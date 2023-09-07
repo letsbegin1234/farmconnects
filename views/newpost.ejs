@@ -1,0 +1,23 @@
+<%-include('loginheader')-%>
+
+
+
+<div class="container">
+    <h1 style="text-align:center; font-weight:bold; text-decoration:underline">Post New Product</h1>
+</div>
+<form action="/postcrops" class="loginForm" enctype="multipart/form-data" method="post">
+  <input type="text" name="farmername" placeholder="Farmer Name" required>
+    <input type="text" name="name" placeholder="Product Name" required>
+    <input type="text" name="quantity" placeholder="Quantity available(in Tons)" required>
+    
+    <input type="text" name="price" placeholder="Price per Ton" required>
+    <input type="text" name="mobileNum" placeholder="Contact Number" required>
+    <h2>Upload Your Product's Image</h2><input type="file" name="myImage" required>
+    <button type="submit">Post</button>
+</form>
+
+
+<%-include('footer')-%>
+
+
+

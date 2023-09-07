@@ -1,0 +1,60 @@
+<%- include('header') -%>
+<div class="container">
+
+<br>
+  <h1>Search Results for <span style="font-weight:bold"><%= query %></span></h1>
+<br><br>
+
+</div>
+
+
+<% for(let i=0;i<images.length;i++){ %>
+    <%   for(let j=0;j<images[i].products.length;j++){ %>
+   <%   if(images[i].products[j].isExists===true) { %>
+
+           <div class="product">
+             <div class="image" style="background:url('data:image/<%=images[i].products[j].image.contentType%>;base64,<%=images[i].products[j].image.data.toString('base64')%>');background-position:center;background-size:cover;">
+
+             </div>
+             <div class="details">
+             
+             <i style="float:right; cursor:pointer" class="material-icons" onclick="navigator.clipboard.writeText('https://farmconnects.onrender.com/products/<%=i%>/product/<%=j%>').then(() => { swal('Link Copied', 'Link copied to clipboard!', 'success'); }).catch((error) => { console.error('Error copying link to clipboard:', error); })">content_copy</i>
+
+
+
+               <b>Farmer Name</b>
+               <h2><%=images[i].products[j].farmername%></h2>
+
+               <b>Product Name</b>
+               <h2><%=images[i].products[j].name%></h2>
+               <b>Quantity Available(in Tons) </b>
+
+               <h2><%=images[i].products[j].quantity%></h2>
+
+
+               
+               <b>Price(Rs/ton)</b>
+               <h2><%=images[i].products[j].price%></h2>
+               
+               <b>Contact</b>
+               <h2><%=images[i].products[j].mobileNum%></h2>
+              <button class="d-flex align-items-center btn btn-outline-dark" onclick="location.href='/products/<%=i%>/product/<%=j%>'">Order Now&ensp;<span class="material-icons">
+arrow_forward
+</span></button>
+            
+               
+
+               
+
+             </div>
+
+           </div>
+           <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   
+     <%     } %>
+
+    <%   } %>
+<%}%>
+
+
+
+<%- include('footer') -%>

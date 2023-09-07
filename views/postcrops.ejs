@@ -1,0 +1,100 @@
+<%-include("loginheader")-%>
+
+
+<div class="container">
+    <h1 style="text-align:center; font-weight:bold; text-decoration:underline">Your Products</h1>
+</div>
+
+
+
+<% for(let i=0;i<images.length;i++){ %>
+    <%   for(let j=0;j<images[i].products.length;j++){ %>
+    <%    if(images[i].products[j].isExists===true){ %>
+           <div class="product">
+             <div class="image" style="background:url('data:image/<%=images[i].products[j].image.contentType%>;base64,<%=images[i].products[j].image.data.toString('base64')%>');background-position:center;background-size:cover;">
+
+             </div>
+             <div class="details">
+             
+             <i style="float:right; cursor:pointer" class="material-icons" onclick="navigator.clipboard.writeText('https://farmconnects.onrender.com/products/<%=i%>/product/<%=j%>').then(() => { swal('Link Copied', 'Link copied to clipboard!', 'success'); }).catch((error) => { console.error('Error copying link to clipboard:', error); })">content_copy</i>
+
+
+
+               <b>Farmer Name</b>
+               <h2><%=images[i].products[j].farmername%></h2>
+
+               <b>Product Name</b>
+               <h2><%=images[i].products[j].name%></h2>
+               <b>Quantity Available(in Tons)</b>
+
+               <h2><%=images[i].products[j].quantity%></h2>
+
+
+
+               <b>Price(Rs/ton)</b>
+               <h2><%=images[i].products[j].price%></h2>
+
+               <b>Contact</b>
+               <h2><%=images[i].products[j].mobileNum%></h2>
+               <a class="btn btn-danger" href="/delete/<%=i%>/<%=j%>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                
+
+
+             </div>
+
+           </div>
+       <%   } %>
+
+    <%   } %>
+<%}%>
+
+<div class="container">
+  <h1 style="text-align:center; font-weight:bold; text-decoration:underline">Orders Recieved</h1>
+</div>
+
+
+<% for(let i=0;i<images.length;i++){ %>
+  <%   for(let j=0;j<images[i].orders.length;j++){ %>
+       <% if(images[i].orders.length===0) {%>
+        <h1>No orders recieved Yet</h1>
+     <%   } %>
+     <div class="product">
+     
+           <div class="details2">
+           
+           <i style="float:right; cursor:pointer" class="material-icons" onclick="navigator.clipboard.writeText('https://farmconnects.onrender.com/products/<%=images[i].orders[j].i%>/product/<%=images[i].orders[j].j%>').then(() => { swal('Link Copied', 'Link copied to clipboard!', 'success'); }).catch((error) => { console.error('Error copying link to clipboard:', error); })">content_copy</i>
+            
+           <b>Customer Name</b>
+             <h2><%=images[i].orders[j].name%></h2>
+
+
+             <b>Product Name</b>
+             <h2><%=images[i].orders[j].productName%></h2>
+
+             
+             <b>Quantity Ordered(in Tons)</b>
+
+             <h2><%=images[i].orders[j].quantity%></h2>
+
+
+
+             <b>Contact</b>
+             <h2><%=images[i].orders[j].mobileNum%></h2>
+
+             <b>Email</b>
+             <h2><%=images[i].orders[j].email%></h2>
+
+                  
+
+
+           </div>
+           </div>
+          
+
+        
+     
+  <%   } %>
+<%}%>
+
+
+<%-include("footer")-%>
